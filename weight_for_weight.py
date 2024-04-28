@@ -6,18 +6,10 @@ def order_weight(strng):
     obj_array = []
 
     for number in numbers:
-        num = list(number)
-        total = sum(int(digit) for digit in num)
+        total = sum(int(digit) for digit in number)
+        obj_array.append((number, total))
 
-        obj_array.append({'number': number, 'weight': str(total)})
-        
-    def sort_key(item):
-        print(item)
-        return (int(item['weight']), item['number'])
+    obj_array.sort(key=lambda x: (x[1], x[0]))
 
-    obj_array.sort(key=sort_key)
-
-    results = [item['number'] for item in obj_array]
-
-    solution = ' '.join(results)
+    solution = ' '.join(item[0] for item in obj_array)
     return solution
